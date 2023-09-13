@@ -14,8 +14,14 @@ const apiVersion = '2023-08-01'
 const uri = new URL(
   `https://${projectId}.api.sanity.io/v${apiVersion}/graphql/${dataset}/${graphqlTag}`,
 )
+uri.searchParams.set('perspective', 'previewDrafts')
 uri.searchParams.set('resultSourceMap', 'true')
-const httpLink = new HttpLink({uri: uri.toString()})
+const httpLink = new HttpLink({
+  uri: uri.toString(),
+  headers: {
+    Authorization: `Bearer ${import.meta.env.VITE_SANITY_API_VIEWER_TOKEN}`,
+  },
+})
 
 const encodeCSMFromExtensions = new ApolloLink((operation, forward) => {
   return forward(operation).map((response) => {
@@ -25,7 +31,7 @@ const encodeCSMFromExtensions = new ApolloLink((operation, forward) => {
     }
 
     // Prepare transcoder to create links to Sanity Studio
-    const transcoder = createTranscoder({studioUrl: 'http://localhost:3333'})
+    const transcoder = createTranscoder({studioUrl: 'https://demo-custom-workflow.sanity.studio'})
 
     const csm = response.extensions.sanitySourceMap
     const transcoderResult = transcoder(response.data, csm)

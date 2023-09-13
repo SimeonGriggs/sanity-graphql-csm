@@ -1,6 +1,6 @@
 import {gql, useQuery} from '@apollo/client'
-import {enableVisualEditing} from '@sanity/overlays'
-import {useEffect} from 'react'
+
+import Posts from './Posts'
 
 const GET_POSTS = gql`
   query allPost {
@@ -14,24 +14,15 @@ const GET_POSTS = gql`
 
 function App() {
   const {loading, error, data} = useQuery(GET_POSTS)
-  useEffect(enableVisualEditing, [])
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error : {error.message}</p>
+  if (loading) return <p className="p-8 text-center block animate-pulse">Loading...</p>
+  if (error) return <p className="p-8 text-center block bg-red-50">Error : {error.message}</p>
 
   const posts = data.allPost || []
 
   return (
     <main className="grid gap-8 p-8 bg-blue-50">
-      {posts.map((post: any) => (
-        <article
-          key={post._id}
-          className="container mx-auto p-8 bg-white rounded-lg shadow-lg shadow-blue-500/10"
-        >
-          <h2 className="text-2xl font-bold">{post.title}</h2>
-          <p className="mt-4">{post.content}</p>
-        </article>
-      ))}
+      <Posts posts={posts} />
     </main>
   )
 }
