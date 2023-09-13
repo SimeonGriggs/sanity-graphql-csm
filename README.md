@@ -1,5 +1,7 @@
 # Sanity, GraphQL and Content Source Maps
 
+![Screenshot](./screenshot.png)
+
 An example React application using:
 
 - Vite, React, TypeScript and Tailwind CSS
