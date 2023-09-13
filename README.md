@@ -1,4 +1,6 @@
-# Sanity, GraphQL and Content Source Maps
+# Sanity, GraphQL, Perspectives, Content Source Maps and Overlays
+
+📹 [Loom Walkthrough](https://www.loom.com/share/2d414eddca8d44f28d73fa8b96aace63)
 
 ![Screenshot](./screenshot.png)
 

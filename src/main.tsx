@@ -14,11 +14,14 @@ const apiVersion = '2023-08-01'
 const uri = new URL(
   `https://${projectId}.api.sanity.io/v${apiVersion}/graphql/${dataset}/${graphqlTag}`,
 )
+// Requires a token with read permissions to the dataset
 uri.searchParams.set('perspective', 'previewDrafts')
+// Requires enterprise plan
 uri.searchParams.set('resultSourceMap', 'true')
 const httpLink = new HttpLink({
   uri: uri.toString(),
   headers: {
+    // BAD PATTERN: Do not expose token client-side this is just for a low-risk demo
     Authorization: `Bearer ${import.meta.env.VITE_SANITY_API_VIEWER_TOKEN}`,
   },
 })
