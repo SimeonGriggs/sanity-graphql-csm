@@ -10,7 +10,7 @@ export default function Nav() {
           }
           to="/"
         >
-          Home
+          Default
         </NavLink>
       </li>
       <li>
