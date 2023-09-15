@@ -1,42 +1,39 @@
 {
-  "name": "sanity-graphql-csm",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "sideEffects": false,
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve build",
+    "typecheck": "tsc"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.3",
-    "@sanity/eslint-config-studio": "^3.0.1",
+    "@remix-run/css-bundle": "^1.19.3",
+    "@remix-run/node": "^1.19.3",
+    "@remix-run/react": "^1.19.3",
+    "@remix-run/serve": "^1.19.3",
+    "@sanity/client": "^6.4.12",
     "@sanity/overlays": "^1.0.6",
     "@sanity/preview-kit": "^3.1.6",
-    "@tanstack/react-query": "^4.35.0",
     "graphql": "^16.8.0",
     "graphql-request": "^6.1.0",
+    "isbot": "^3.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react": "^4.0.3",
-    "autoprefixer": "^10.4.15",
-    "eslint": "^8.45.0",
+    "@remix-run/dev": "^1.19.3",
+    "@remix-run/eslint-config": "^1.19.3",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "eslint": "^8.49.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "postcss": "^8.4.29",
     "prettier": "^3.0.3",
-    "tailwindcss": "^3.3.3",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
   },
   "prettier": {
     "semi": false,

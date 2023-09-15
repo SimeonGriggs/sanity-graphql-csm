@@ -1,5 +1,5 @@
 {
-  "extends": "@sanity/eslint-config-studio",
+  "extends": ["@remix-run/eslint-config", "@remix-run/eslint-config/node"],
   "plugins": ["prettier", "simple-import-sort"],
   "rules": {
     "prettier/prettier": "error",

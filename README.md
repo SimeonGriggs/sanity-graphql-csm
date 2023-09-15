@@ -1,14 +1,58 @@
-# Sanity, GraphQL, Perspectives, Content Source Maps and Overlays
+# Welcome to Remix!
 
-📹 [Loom Walkthrough](https://www.loom.com/share/2d414eddca8d44f28d73fa8b96aace63)
+- [Remix Docs](https://remix.run/docs)
 
-![Screenshot](./screenshot.png)
+## Development
 
-An example React application using:
+From your terminal:
 
-- Vite, React, TypeScript and Tailwind CSS
-- [Sanity content queried via GraphQL](https://www.sanity.io/docs/graphql)
-- GraphQL queries using Apollo Client
-- [Content Source Maps returned in the GraphQL](https://www.sanity.io/docs/graphql#e52e2285f14f) responses' [`extensions`](https://www.apollographql.com/docs/resources/graphql-glossary/#extensions) object
-- [@sanity/preview-kit/csm transcoder](https://github.com/sanity-io/preview-kit#sanitypreview-kitcsm) to apply encoding from [@vercel/stega](https://www.npmjs.com/package/@vercel/stega) from Content Source Maps into Sanity content using [Apollo Client's `link`](https://www.apollographql.com/docs/react/networking/advanced-http-networking/#modifying-response-data) parameter.
-- [@sanity/overlays](https://github.com/sanity-io/overlays) to provide clickable links to content
+```sh
+npm run dev
+```
+
+This starts your app in development mode, rebuilding assets on file changes.
+
+## Deployment
+
+First, build your app for production:
+
+```sh
+npm run build
+```
+
+Then run the app in production mode:
+
+```sh
+npm start
+```
+
+Now you'll need to pick a host to deploy it to.
+
+### DIY
+
+If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
+
+Make sure to deploy the output of `remix build`
+
+- `build/`
+- `public/build/`
+
+### Using a Template
+
+When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over relevant code/assets from your current app to the new project that's pre-configured for your target server.
+
+Most importantly, this means everything in the `app/` directory, but if you've further customized your current application outside of there it may also include:
+
+- Any assets you've added/updated in `public/`
+- Any updated versions of root files such as `.eslintrc.js`, etc.
+
+```sh
+cd ..
+# create a new project, and pick a pre-configured host
+npx create-remix@latest
+cd my-new-remix-app
+# remove the new project's app (not the old one!)
+rm -rf app
+# copy your app over
+cp -R ../my-old-remix-app/app app
+```
