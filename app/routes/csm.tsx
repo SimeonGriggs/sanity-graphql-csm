@@ -16,19 +16,19 @@ export async function loader() {
   queryUrl.searchParams.set('resultSourceMap', 'true')
 
   // Content source maps are returned in the "extensions" key of the response
-  const {data: rawData, extensions} = await rawRequest<Data>(queryUrl.toString(), GET_POSTS)
+  const {data, extensions} = await rawRequest<Data>(queryUrl.toString(), GET_POSTS)
 
   // ✏️ Sanity's GraphQL + Visual Editing
   // Which we then need to apply to the data to create links for visual editing
   if (typeof extensions === 'object' && extensions !== null && 'sanitySourceMap' in extensions) {
     const transcoder = createTranscoder({studioUrl: 'http://localhost:3333'})
     const csm = extensions.sanitySourceMap as ContentSourceMap
-    const transcoded = transcoder(rawData, csm)
+    const transcoded = transcoder(data, csm)
 
     return {posts: transcoded.result.allPost}
   }
 
-  return {posts: rawData.allPost}
+  return {posts: data.allPost}
 }
 
 export default function Index() {

@@ -26,7 +26,7 @@ export async function loader() {
   headers.set('Authorization', `Bearer ${process.env.SANITY_API_VIEWER_TOKEN}`)
 
   // Content source maps are returned in the "extensions" key of the response
-  const {data: rawData, extensions} = await rawRequest<Data>(
+  const {data, extensions} = await rawRequest<Data>(
     queryUrl.toString(),
     GET_POSTS,
     variables,
@@ -38,12 +38,12 @@ export async function loader() {
   if (typeof extensions === 'object' && extensions !== null && 'sanitySourceMap' in extensions) {
     const transcoder = createTranscoder({studioUrl: 'http://localhost:3333'})
     const csm = extensions.sanitySourceMap as ContentSourceMap
-    const transcoded = transcoder(rawData, csm)
+    const transcoded = transcoder(data, csm)
 
     return {posts: transcoded.result.allPost}
   }
 
-  return {posts: rawData.allPost}
+  return {posts: data.allPost}
 }
 
 export default function Index() {
